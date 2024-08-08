@@ -53,7 +53,7 @@ function useInputEmail(defaultValue = '') {
     }
   };
 
-  return [email, isValid, setValid];
+  return [email, handleEmailChange, isValid, setValid];
 }
 
 function useInputPassword(defaultValue = '') {
