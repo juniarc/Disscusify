@@ -74,7 +74,7 @@ function useInputPassword(defaultValue = '') {
     }
   };
 
-  return [password, handlePasswordChange, isValid, setValid];
+  return [password, isValid, setValid];
 }
 
 export { useInput, useInputEmail, useInputName, useInputPassword };
