@@ -10,7 +10,7 @@
     "lint": "eslint src",
     "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "e2e": "cypress run",
-    "ci:test": "jest --no-watch && start-server-and-test start http-get://192.168.96.241:3000 e2e --timeout 30000"
+    "ci:test": "jest --no-watch && start-server-and-test start http://192.168.96.241:3000 e2e"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
