@@ -1,0 +1,302 @@
+.auth-page {
+	background-image: url(../../../public//images/bg-authpage.jpg);
+	background-position: center;
+	background-size: cover;
+
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	align-items: center;
+}
+
+.auth-page__left {
+	position: relative;
+
+	height: 100%;
+	width: 50%;
+}
+
+.auth-page__logo {
+	font-family: 'Roboto Mono', monospace;
+	font-weight: 700;
+
+	color: white;
+
+	position: absolute;
+}
+
+.auth-page__hero-text {
+	position: relative;
+	top: 50%;
+
+	transform: translateY(-50%);
+
+	font-weight: 900;
+
+	color: white;
+}
+
+@keyframes translate-container {
+	to {
+		transform: translateX(0);
+	}
+}
+
+.auth-page__right {
+	width: 50%;
+	height: 100%;
+
+	background-color: var(--var-color-white-to-black);
+
+	border-radius: 32px 0 0 32px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	transform: translateX(100%);
+
+	animation: translate-container 1s ease-out 0s 1 forwards;
+}
+
+.auth-page__right__header {
+	width: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.mode-button {
+	display: flex;
+	align-items: center;
+
+	color: var(--var-color-black-to-white);
+}
+
+.lang__container {
+	position: relative;
+}
+
+.lang-button {
+	display: flex;
+	align-items: center;
+
+	color: var(--var-color-black-to-white);
+}
+
+.lang-list {
+	position: absolute;
+	width: fit-content;
+	top: 100%;
+
+	background-color: #03346e;
+	border-radius: 0 0 16px 0;
+}
+
+.lang-item {
+	color: white;
+}
+
+.auth-page__right__body {
+	width: 80%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.auth-page__right__title {
+	font-weight: 900;
+	color: var(--var-color-blue-to-white);
+}
+
+.divider-container {
+	width: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.divider-line {
+	background-color: var(--var-color-black-to-white);
+
+	width: 40%;
+	height: 2px;
+}
+
+.divider-container p {
+	color: var(--var-color-black-to-white);
+}
+
+.auth-page__navigate-button {
+	text-decoration: none;
+	color: white;
+
+	font-weight: 900;
+	text-align: center;
+
+	border-radius: 16px;
+
+	width: 100%;
+}
+
+.auth-page__navigate-button.login {
+	background-color: #ef5a6f;
+}
+
+.auth-page__navigate-button.register {
+	background-color: #03346e;
+}
+
+@media screen and (min-width: 1280px) {
+	.auth-page__left {
+		padding: 40px;
+	}
+
+	.auth-page__logo {
+		font-size: 1.5em;
+
+		top: 40px;
+		left: 40px;
+	}
+
+	.auth-page__hero-text {
+		font-size: 4rem;
+		line-height: 4.375rem;
+	}
+
+	.auth-page__right {
+		padding: 40px;
+	}
+
+	.mode-button {
+		column-gap: 8px;
+
+		height: 24px;
+	}
+
+	.lang-button {
+		column-gap: 8px;
+
+		height: 24px;
+	}
+
+	.lang-list {
+		padding: 10px 10px;
+	}
+
+	.lang-item {
+		margin-bottom: 6px;
+	}
+
+	.auth-page__right__body {
+		row-gap: 20px;
+	}
+
+	.auth-page__right__title {
+		font-size: 3.5rem;
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	.auth-page {
+		flex-direction: column;
+	}
+
+	.auth-page__left {
+		width: 100%;
+		height: 30%;
+	}
+
+	.auth-page__logo {
+		font-size: 1.5em;
+
+		top: 20px;
+		left: 50%;
+
+		transform: translateX(-50%);
+	}
+
+	.auth-page__hero-text {
+		font-size: 4rem;
+		line-height: 4.375rem;
+
+		text-align: center;
+
+		top: 60%;
+	}
+
+	@keyframes translate-container {
+		to {
+			transform: translateY(0);
+		}
+	}
+
+	.auth-page__right {
+		transform: translateY(100%);
+
+		width: 100%;
+		height: 70%;
+
+		padding: 60px;
+
+		border-radius: 32px 32px 0 0;
+	}
+
+	.mode-button {
+		column-gap: 8px;
+
+		height: 24px;
+	}
+
+	.lang-button {
+		column-gap: 8px;
+
+		height: 24px;
+	}
+
+	.lang-list {
+		padding: 10px;
+	}
+
+	.auth-page__right__body {
+		row-gap: 20px;
+	}
+
+	.auth-page__right__title {
+		font-size: 3.5rem;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.auth-page__left {
+		min-height: 25%;
+		max-height: 35%;
+	}
+
+	.auth-page__hero-text {
+		font-size: 2.5em;
+		line-height: 1em;
+	}
+
+	.auth-page__right {
+		padding: 40px 40px;
+		height: 85%;
+	}
+
+	.lang-list {
+		padding: 10px;
+	}
+
+	.auth-page__right__header {
+		margin-bottom: 16px;
+	}
+
+	.auth-page__right__body {
+		width: 100%;
+		row-gap: 20px;
+	}
+}

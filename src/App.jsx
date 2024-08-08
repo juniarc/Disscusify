@@ -1,72 +1,119 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'; 
-import AppHeader from './components/AppHeader';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import AppHeader from './components/app/AppHeader';
+import AppFooter from './components/app/AppFooter';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
 import DetailPage from './pages/DetailPage';
+import LeaderboardPage from './pages/LeaderboardPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { asyncPreloadProcess } from './states/isPreload/action';
 import { asyncUnsetAuthUser } from './states/authUser/action';
 import { setTheme, getTheme } from './states/theme/action';
+import { setLang, getLang } from './states/language/action';
 
 function App() {
-    const authUser = useSelector((states) => states.authUser);
-    const isPreload = useSelector((states) => states.isPreload);
-    const theme = useSelector((states) => states.theme);
+  const [t, i18n] = useTranslation();
 
-    const dispatch = useDispatch();
+  const isPreload = useSelector((states) => states.isPreload);
+  const authUser = useSelector((states) => states.authUser);
+  const theme = useSelector((states) => states.theme);
+  const lang = useSelector((states) => states.lang);
 
-    const location = useLocation();
-    const pathName = location.pathname;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        dispatch(asyncPreloadProcess())
-    }, [dispatch]);
+  const location = useLocation();
+  const pathName = location.pathname;
 
-    useEffect(() => {
-        dispatch(getTheme())
-        document.documentElement.setAttribute('theme', theme)
-    }, [theme, dispatch])
+  useEffect(() => {
+    dispatch(asyncPreloadProcess());
+  }, [dispatch]);
 
-    const onLogOut = () => {
-        dispatch(asyncUnsetAuthUser());
-    }
+  useEffect(() => {
+    dispatch(getLang());
+    dispatch(getTheme());
+    document.documentElement.setAttribute('theme', theme);
+    i18n.changeLanguage(lang);
+  }, [theme, dispatch, lang, i18n]);
 
-    const onTheme = () => {
-        dispatch(setTheme(theme));
-    }
+  const onLogOut = () => {
+    dispatch(asyncUnsetAuthUser());
+    navigate('/');
+  };
 
-    if (isPreload) {
-        return null;
-    }
+  const onTheme = () => {
+    dispatch(setTheme(theme));
+  };
 
-    if (authUser === null) {
-        return (
-            <>
-                <main>
-                    <Routes>
-                        <Route path='/' element={<LoginPage theme={theme} changeTheme={onTheme} />} />
-                        <Route path='/register' element={<RegisterPage theme={theme} changeTheme={onTheme} />} />
-                    </Routes>
-                </main>
-            </>
-        );
-    }
+  const onSelectedLang = (language) => {
+    dispatch(setLang(language));
+    i18n.changeLanguage(language);
+  };
 
+  if (isPreload) {
+    return null;
+  }
+
+  if (authUser === null) {
     return (
-       <>
-            <header className='app-header'>
-                <AppHeader path={pathName} onLogout={onLogOut}/>
-            </header>
-            <main>
-                <Routes>
-                    <Route path='/' element={<HomePage />} />
-                    <Route path='/threads/:id' element={<DetailPage />} />
-                </Routes>
-            </main>
-       </>
-    )
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={(
+              <LoginPage
+                theme={theme}
+                changeTheme={onTheme}
+                t={t}
+                selectedLang={lang}
+                onSelectedLang={onSelectedLang}
+              />
+            )}
+          />
+          <Route
+            path="/register"
+            element={(
+              <RegisterPage
+                theme={theme}
+                changeTheme={onTheme}
+                t={t}
+                selectedLang={lang}
+                onSelectedLang={onSelectedLang}
+              />
+            )}
+          />
+          <Route path="*" element={<NotFoundPage t={t} />} />
+        </Routes>
+      </main>
+    );
+  }
+
+  return (
+    <>
+      <header className="app-header">
+        <AppHeader path={pathName} onLogout={onLogOut} t={t} />
+      </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage t={t} />} />
+          <Route path="/threads/:id" element={<DetailPage t={t} />} />
+          <Route path="/leaderboards" element={<LeaderboardPage t={t} />} />
+          <Route path="*" element={<NotFoundPage t={t} />} />
+        </Routes>
+      </main>
+      <AppFooter
+        theme={theme}
+        changeTheme={onTheme}
+        t={t}
+        selectedLang={lang}
+        onSelectedLang={onSelectedLang}
+      />
+    </>
+  );
 }
 
 export default App;

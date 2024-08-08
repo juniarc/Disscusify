@@ -1,12 +1,22 @@
 function saveThemeToStorage(theme) {
-    localStorage.setItem('theme', theme);
+  localStorage.setItem('theme', theme);
 }
 
 function getThemeFromStorage() {
-    return localStorage.getItem('theme') || 'light-theme';
+  return localStorage.getItem('theme') || 'light-theme';
 }
 
-export { 
-    saveThemeToStorage,
-    getThemeFromStorage,
+function saveLangToStorage(lang) {
+  localStorage.setItem('lang', lang);
 }
+
+function getLangFromStorage() {
+  return localStorage.getItem('lang') || 'en';
+}
+
+export {
+  saveThemeToStorage,
+  getThemeFromStorage,
+  saveLangToStorage,
+  getLangFromStorage,
+};

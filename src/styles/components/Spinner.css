@@ -1,0 +1,64 @@
+.spinner {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background:
+		radial-gradient(farthest-side, #000000 94%, #0000) top/9px 9px no-repeat,
+		conic-gradient(#0000 30%, #000000);
+	-webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
+	animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+.spinner-page {
+	width: 11.2px;
+	height: 11.2px;
+	animation: spinner-page-2 1s infinite linear;
+}
+
+.spinner-page div {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #ef5a6f;
+	border-radius: 50%;
+	animation: spinner-page-1 1.25s infinite ease;
+}
+
+.spinner-page div:nth-child(1) {
+	--rotation: 90;
+}
+
+.spinner-page div:nth-child(2) {
+	--rotation: 180;
+}
+
+.spinner-page div:nth-child(3) {
+	--rotation: 270;
+}
+
+.spinner-page div:nth-child(4) {
+	--rotation: 360;
+}
+
+@keyframes spinner-page-1 {
+	0%,
+	100% {
+		transform: rotate(calc(var(--rotation) * 1deg)) translateY(0);
+	}
+
+	50% {
+		transform: rotate(calc(var(--rotation) * 1deg)) translateY(300%);
+	}
+}
+
+@keyframes spinner-page-2 {
+	to {
+		transform: rotate(360deg);
+	}
+}

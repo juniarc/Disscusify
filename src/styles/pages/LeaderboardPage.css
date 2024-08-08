@@ -1,0 +1,135 @@
+.leaderboard-page {
+	background: var(--var-color-white-to-black-for-page);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+
+	min-height: 100vh;
+}
+
+.leaderboard-page__container {
+	background-color: var(--var-color-white-to-black);
+	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+	border-radius: 32px;
+
+	position: relative;
+	min-height: 100%;
+}
+
+.leaderboard-page__title {
+	width: 100%;
+	text-align: center;
+
+	color: var(--var-color-black-to-white);
+}
+
+.leaderboard__content-header {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.leaderboard__content-header p {
+	font-weight: 300;
+	color: var(--var-color-black-to-white);
+}
+.leaderboard__content-body {
+	display: flex;
+	flex-direction: column;
+}
+
+.leaderboard-page__loader {
+	width: 100%;
+	height: 100vh;
+
+	transform: translate(50%, 20%);
+}
+@media screen and (min-width: 1280px) {
+	.leaderboard-page {
+		padding: 40px;
+	}
+
+	.leaderboard-page__container {
+		padding: 40px 80px;
+	}
+
+	.leaderboard-page__back-btn {
+		left: 30px;
+		top: 50px;
+
+		width: 24px;
+		height: 24px;
+	}
+
+	.leaderboard-page__title {
+		font-size: 3em;
+	}
+
+	.leaderboard__content-body {
+		margin-top: 32px;
+		row-gap: 16px;
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	.leaderboard-page {
+		padding: 40px;
+	}
+
+	.leaderboard-page__container {
+		padding: 40px 80px;
+	}
+
+	.leaderboard-page__back-btn {
+		left: 30px;
+		top: 50px;
+
+		width: 24px;
+		height: 24px;
+	}
+
+	.leaderboard-page__title {
+		font-size: 3em;
+
+		margin-bottom: 32px;
+	}
+
+	.leaderboard__content-body {
+		margin-top: 32px;
+		row-gap: 16px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.leaderboard-page {
+		padding: 20px;
+	}
+
+	.leaderboard-page__back-btn {
+		left: 15px;
+		top: 25px;
+
+		width: 16px;
+		height: 16px;
+	}
+
+	.leaderboard-page__container {
+		padding: 40px;
+	}
+
+	.leaderboard-page__title {
+		font-size: 1.5em;
+
+		margin-bottom: 16px;
+	}
+
+	.leaderboard-page__back-btn {
+		top: 40px;
+		left: 40px;
+	}
+
+	.leaderboard__content-body {
+		margin-top: 16px;
+		row-gap: 16px;
+	}
+}

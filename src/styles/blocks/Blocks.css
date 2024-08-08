@@ -1,0 +1,11 @@
+button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	text-align: center;
+	font-family: 'Poppins', sans-serif;
+}
+
+a {
+	text-decoration: none;
+}

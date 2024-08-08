@@ -1,84 +1,102 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaArrowLeft } from 'react-icons/fa'
-import DetailHeader from '../components/DetailHeader';
-import DetailInteractions from '../components/DetailInteractions';
+import { FaArrowLeft } from 'react-icons/fa';
+import DetailHeader from '../components/detail/DetailHeader';
+import DetailInteractions from '../components/detail/DetailInteractions';
 import {
-	asyncReceiveThreadDetail,
-	asyncToggleUpVoteThreadDetail,
-	asyncToggleDownVoteThreadDetail,
-	asyncNeutralizeVoteThreadDetail,
-	asyncToggleUpVoteComment,
-	asyncToggleDownVoteComment,
-	asyncNeutralizeVoteThreadComment,
-	asyncAddComment,
+  asyncReceiveThreadDetail,
+  asyncToggleUpVoteThreadDetail,
+  asyncToggleDownVoteThreadDetail,
+  asyncNeutralizeVoteThreadDetail,
+  asyncToggleUpVoteComment,
+  asyncToggleDownVoteComment,
+  asyncNeutralizeVoteThreadComment,
+  asyncAddComment,
 } from '../states/threadDetail/action';
+import SpinnerPage from '../components/spinner/SpinnerPage';
 
-function DetailPage() {
-	const { id } = useParams();
-	const detailThread = useSelector((states) => states.detailThread);
-	const authUser = useSelector((states) => states.authUser);
+import '../styles/pages/DetailPage.css';
 
-	const dispatch = useDispatch();
+function DetailPage({ t }) {
+  const { id } = useParams();
+  const detailThread = useSelector((states) => states.detailThread);
+  const authUser = useSelector((states) => states.authUser);
+  const isLoading = useSelector((states) => states.isLoading);
 
-	useEffect(() => {
-		dispatch(asyncReceiveThreadDetail(id));
-	}, [id, dispatch]);
+  const dispatch = useDispatch();
 
-	const onThreadUpVote = () => {
-		dispatch(asyncToggleUpVoteThreadDetail());
-	};
+  useEffect(() => {
+    dispatch(asyncReceiveThreadDetail(id));
+  }, [id, dispatch]);
 
-	const onThreadDownVote = () => {
-		dispatch(asyncToggleDownVoteThreadDetail());
-	};
+  const onThreadUpVote = () => {
+    dispatch(asyncToggleUpVoteThreadDetail());
+  };
 
-	const onThreadNeutralVote = () => {
-		dispatch(asyncNeutralizeVoteThreadDetail())
-	}
+  const onThreadDownVote = () => {
+    dispatch(asyncToggleDownVoteThreadDetail());
+  };
 
-	const onCommenUpVote = (commentId) => {
-		console.log('detailPage')
-		dispatch(asyncToggleUpVoteComment(commentId));
-	}
+  const onThreadNeutralVote = () => {
+    dispatch(asyncNeutralizeVoteThreadDetail());
+  };
 
-	const onCommentDownVote = (commetId) => {
-		dispatch(asyncToggleDownVoteComment(commetId));
-	}
+  const onCommenUpVote = (commentId) => {
+    dispatch(asyncToggleUpVoteComment(commentId));
+  };
 
-	const onCommentNeutralVote = (commentId) => {
-		dispatch(asyncNeutralizeVoteThreadComment(commentId));
-	}
+  const onCommentDownVote = (commetId) => {
+    dispatch(asyncToggleDownVoteComment(commetId));
+  };
 
-	const onSubmitComment = (content) => {
-		dispatch(asyncAddComment({ content }))
-	}
+  const onCommentNeutralVote = (commentId) => {
+    dispatch(asyncNeutralizeVoteThreadComment(commentId));
+  };
 
-	if (!detailThread) {
-		return null;
-	}
+  const onSubmitComment = (content) => {
+    dispatch(asyncAddComment({ content }));
+  };
 
-	return (
-		<section className="detail-page">
-			<div className="detail-page__container">
-				<Link to='/' className='detail-page__back-btn'><FaArrowLeft className='back-icon'/></Link>
-				<DetailHeader {...detailThread} />
-				<p className="detail-page__body">{detailThread.body}</p>
-				<DetailInteractions
-					{...detailThread}
-					authUser={authUser}
-					upVote={onThreadUpVote}
-					downVote={onThreadDownVote}
-					neutralVote={onThreadNeutralVote}
-					upVoteComment={onCommenUpVote}
-					downVoteComment={onCommentDownVote}
-					neutralVoteComment={onCommentNeutralVote}
-					addComment={onSubmitComment}
-				/>
-			</div>
-		</section>
-	);
+  if (!detailThread) {
+    return null;
+  }
+
+  return (
+    <section className="detail-page">
+      {isLoading ? (
+        <div className="detail-page__loader">
+          <SpinnerPage />
+        </div>
+      ) : (
+        <div className="detail-page__container">
+          <Link to="/" className="detail-page__back-btn">
+            <FaArrowLeft className="back-icon" />
+          </Link>
+          <DetailHeader {...detailThread} t={t} />
+          <p className="detail-page__body">{detailThread.body}</p>
+          <DetailInteractions
+            {...detailThread}
+            authUser={authUser}
+            upVote={onThreadUpVote}
+            downVote={onThreadDownVote}
+            neutralVote={onThreadNeutralVote}
+            upVoteComment={onCommenUpVote}
+            downVoteComment={onCommentDownVote}
+            neutralVoteComment={onCommentNeutralVote}
+            addComment={onSubmitComment}
+            t={t}
+          />
+        </div>
+      )}
+    </section>
+  );
 }
+
+DetailPage.propTypes = {
+  t: PropTypes.func.isRequired,
+};
 
 export default DetailPage;

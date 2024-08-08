@@ -1,49 +1,71 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import HomeMidContent from '../components/HomeMidContent';
-import HomeLeftContent from '../components/HomeLeftContent';
-import HomeRightContent from '../components/HomeRightContent';
+import HomeMidContent from '../components/home/HomeMidContent';
+import HomeLeftContent from '../components/home/HomeLeftContent';
+import HomeRightContent from '../components/home/HomeRightContent';
 import { asyncPopulateUsersAndThreads } from '../states/shared/action';
-import { asyncAddThread, asyncToggleUpVoteThread, asyncToggleDownVoteThread, asyncNeutralizeVoteThread } from '../states/threads/action';
+import { resetFilteredThreads } from '../states/filteredThreads/action';
+import {
+  asyncToggleUpVoteThread,
+  asyncToggleDownVoteThread,
+  asyncNeutralizeVoteThread,
+} from '../states/threads/action';
+import { setCategories } from '../states/categories/action';
 
-function HomePage() {
-    const threads = useSelector((states) => states.threads);
-    const users = useSelector((states) => states.users);
-    const authUser = useSelector((states) => states.authUser);
+import '../styles/pages/HomePage.css';
 
-    const dispatch = useDispatch();
+function HomePage({ t }) {
+  const threads = useSelector((states) => states.threads);
+  const filteredThreads = useSelector((states) => states.filteredThreads);
+  const users = useSelector((states) => states.users);
+  const authUser = useSelector((states) => states.authUser);
 
-    useEffect(() => {
-        dispatch(asyncPopulateUsersAndThreads());
-    }, [dispatch]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(asyncPopulateUsersAndThreads());
+  }, [dispatch]);
 
-    const onUpVote = (threadId) => {
-        dispatch(asyncToggleUpVoteThread(threadId))
-    };
+  useEffect(() => {
+    dispatch(setCategories(threads));
+    dispatch(resetFilteredThreads(threads));
+  }, [threads, dispatch]);
 
-    const onDownVote = (threadId) => {
-        dispatch(asyncToggleDownVoteThread(threadId))
-    };
+  const onUpVote = (threadId) => {
+    dispatch(asyncToggleUpVoteThread(threadId));
+  };
 
-    const onThreadNeutralVote = (threadId) => {
-		dispatch(asyncNeutralizeVoteThread(threadId))
-	}
+  const onDownVote = (threadId) => {
+    dispatch(asyncToggleDownVoteThread(threadId));
+  };
 
-    const threadList = threads.map((thread) => ({
-        ...thread,
-        user: users.find((user) => user.id === thread.ownerId),
-        authUser: authUser.id,
-    }));
+  const onThreadNeutralVote = (threadId) => {
+    dispatch(asyncNeutralizeVoteThread(threadId));
+  };
 
+  const threadList = filteredThreads.map((thread) => ({
+    ...thread,
+    user: users.find((user) => user.id === thread.ownerId),
+    authUser: authUser.id,
+  }));
 
-    return (
-        <section className="home-page">
-            <HomeLeftContent />
-            <HomeMidContent threads={threadList} upVote={onUpVote} downVote={onDownVote} authUser={authUser} neutralVote={onThreadNeutralVote}/>
-            <HomeRightContent authUser={authUser} users={users}/>
-        </section>
-    );
-
+  return (
+    <section className="home-page">
+      <HomeLeftContent t={t} />
+      <HomeMidContent
+        threads={threadList}
+        upVote={onUpVote}
+        downVote={onDownVote}
+        neutralVote={onThreadNeutralVote}
+        t={t}
+      />
+      <HomeRightContent authUser={authUser} users={users} t={t} />
+    </section>
+  );
 }
+
+HomePage.propTypes = {
+  t: PropTypes.func.isRequired,
+};
 
 export default HomePage;
