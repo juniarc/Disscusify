@@ -28,7 +28,7 @@ function useInputName(defaultValue = '') {
     }
   }
 
-  return [name, isValid, setValid];
+  return [name, handleNameChange, isValid, setValid];
 }
 
 function useInputEmail(defaultValue = '') {
