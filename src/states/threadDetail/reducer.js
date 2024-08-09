@@ -20,10 +20,10 @@ function threadDetailReducer(detailThread = null, action = {}) {
       return {
         ...detailThread,
         upVotesBy: detailThread.upVotesBy.filter(
-          (id) => id !== action.payload.userId
+          (id) => id !== action.payload.userId,
         ),
         downVotesBy: detailThread.downVotesBy.filter(
-          (id) => id !== action.payload.userId
+          (id) => id !== action.payload.userId,
         ),
       };
     case ActionType.TOGGLE_UPVOTE_COMMENT:
@@ -60,10 +60,10 @@ function threadDetailReducer(detailThread = null, action = {}) {
             return {
               ...comment,
               upVotesBy: comment.upVotesBy.filter(
-                (id) => id !== action.payload.userId
+                (id) => id !== action.payload.userId,
               ),
               downVotesBy: comment.downVotesBy.filter(
-                (id) => id !== action.payload.userId
+                (id) => id !== action.payload.userId,
               ),
             };
           }

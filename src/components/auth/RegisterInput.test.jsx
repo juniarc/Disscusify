@@ -37,7 +37,7 @@ describe('LoginInput component', () => {
     render(
       <Provider store={store}>
         <RegisterInput register={() => {}} t={t} />
-      </Provider>
+      </Provider>,
     );
     const nameInput = screen.getByPlaceholderText('Full Name');
 
@@ -52,7 +52,7 @@ describe('LoginInput component', () => {
     render(
       <Provider store={store}>
         <RegisterInput register={() => {}} t={t} />
-      </Provider>
+      </Provider>,
     );
     const emailInput = screen.getByPlaceholderText('Email');
 
@@ -68,7 +68,7 @@ describe('LoginInput component', () => {
     render(
       <Provider store={store}>
         <RegisterInput register={() => {}} t={t} />
-      </Provider>
+      </Provider>,
     );
     const passwordInput = screen.getByPlaceholderText('Password');
 
@@ -85,7 +85,7 @@ describe('LoginInput component', () => {
     render(
       <Provider store={store}>
         <RegisterInput register={mockRegister} t={t} />
-      </Provider>
+      </Provider>,
     );
     const nameInput = screen.getByPlaceholderText('Full Name');
     await userEvent.type(nameInput, 'nametest');

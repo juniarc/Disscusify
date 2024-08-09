@@ -32,10 +32,10 @@ function threadsReducer(threads = [], action = {}) {
           return {
             ...thread,
             upVotesBy: thread.upVotesBy.filter(
-              (id) => id !== action.payload.userId
+              (id) => id !== action.payload.userId,
             ),
             downVotesBy: thread.downVotesBy.filter(
-              (id) => id !== action.payload.userId
+              (id) => id !== action.payload.userId,
             ),
           };
         }

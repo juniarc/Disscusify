@@ -68,7 +68,7 @@ describe('asyncGetAllLeaderboards thunk', () => {
     // assert
     expect(dispatch).toHaveBeenCalledWith(startLoadingActionCreator());
     expect(dispatch).toHaveBeenCalledWith(
-      getAllLeaderboardsActionCreator(fakeLeaderboards)
+      getAllLeaderboardsActionCreator(fakeLeaderboards),
     );
     expect(dispatch).toHaveBeenCalledWith(endLoadingActionCreator());
   });

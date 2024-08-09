@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import api from '../../utils/api';
 import {
   startLoadingActionCreator,
@@ -109,7 +110,7 @@ function asyncNeutralizeVoteThread(threadId) {
       toggleNeutralizeVoteThreadActionCreator({
         threadId,
         userId: authUser.id,
-      })
+      }),
     );
 
     try {
@@ -120,7 +121,7 @@ function asyncNeutralizeVoteThread(threadId) {
         toggleNeutralizeVoteThreadActionCreator({
           threadId,
           userId: authUser.id,
-        })
+        }),
       );
     }
   };

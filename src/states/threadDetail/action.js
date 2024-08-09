@@ -1,3 +1,5 @@
+/* eslint-disable object-shorthand */
+/* eslint-disable no-alert */
 import api from '../../utils/api';
 import {
   startLoadingActionCreator,
@@ -159,7 +161,7 @@ function asyncToggleUpVoteComment(commentId) {
       toggleUpVoteCommentActionCreator({
         commentId: commentId,
         userId: authUser.id,
-      })
+      }),
     );
 
     try {
@@ -173,7 +175,7 @@ function asyncToggleUpVoteComment(commentId) {
         toggleUpVoteCommentActionCreator({
           commentId: commentId,
           userId: authUser.id,
-        })
+        }),
       );
     }
   };
@@ -186,7 +188,7 @@ function asyncToggleDownVoteComment(commentId) {
       toggleDownVoteCommentActionCreator({
         commentId: commentId,
         userId: authUser.id,
-      })
+      }),
     );
 
     try {
@@ -200,7 +202,7 @@ function asyncToggleDownVoteComment(commentId) {
         toggleDownVoteCommentActionCreator({
           commentId: commentId,
           userId: authUser.id,
-        })
+        }),
       );
     }
   };
@@ -213,7 +215,7 @@ function asyncNeutralizeVoteThreadComment(commentId) {
       toggleNeutralizeVoteCommentActionCreator({
         userId: authUser.id,
         commentId,
-      })
+      }),
     );
 
     try {
@@ -227,7 +229,7 @@ function asyncNeutralizeVoteThreadComment(commentId) {
         toggleNeutralizeVoteCommentActionCreator({
           commentId: commentId,
           userId: authUser.id,
-        })
+        }),
       );
     }
   };
@@ -243,7 +245,7 @@ function asyncAddComment({ content }) {
         content,
       });
       dispatch(
-        addCommentActionCreator({ comment: comment, userId: authUser.id })
+        addCommentActionCreator({ comment: comment, userId: authUser.id }),
       );
     } catch (error) {
       alert(error.message);

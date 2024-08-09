@@ -3,9 +3,9 @@ import { ActionType } from './action';
 function isLoadingReducer(isLoading = false, action = {}) {
   switch (action.type) {
     case ActionType.START_LOADING:
-      return (isLoading = true);
+      return true;
     case ActionType.END_LOADING:
-      return (isLoading = false);
+      return false;
     default:
       return isLoading;
   }

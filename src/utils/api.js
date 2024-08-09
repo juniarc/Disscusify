@@ -1,6 +1,8 @@
+/* eslint-disable no-use-before-define */
 const api = (() => {
   const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
+  // eslint-disable-next-line no-underscore-dangle
   async function _fetchWithAuth(url, options = {}) {
     return fetch(url, {
       ...options,
@@ -181,7 +183,7 @@ const api = (() => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }
+      },
     );
 
     const responseJson = await response.json();
@@ -207,7 +209,7 @@ const api = (() => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }
+      },
     );
 
     const responseJson = await response.json();
@@ -233,7 +235,7 @@ const api = (() => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }
+      },
     );
 
     const responseJson = await response.json();
@@ -259,7 +261,7 @@ const api = (() => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }
+      },
     );
 
     const responseJson = await response.json();
@@ -285,7 +287,7 @@ const api = (() => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }
+      },
     );
 
     const responseJson = await response.json();
@@ -311,7 +313,7 @@ const api = (() => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }
+      },
     );
 
     const responseJson = await response.json();
@@ -340,7 +342,7 @@ const api = (() => {
         body: JSON.stringify({
           content,
         }),
-      }
+      },
     );
 
     const responseJson = await response.json();

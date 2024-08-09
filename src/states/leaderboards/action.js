@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import api from '../../utils/api';
 import {
   startLoadingActionCreator,

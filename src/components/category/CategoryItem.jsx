@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,7 +27,7 @@ function CategoryItem({ category }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const threads = useSelector((states) => states.threads);
   const [, setSelectedCategory] = useState(
-    () => searchParams.get('category') || ''
+    () => searchParams.get('category') || '',
   );
 
   const dispatch = useDispatch();

@@ -69,6 +69,7 @@ CommentItem.propTypes = {
   t: PropTypes.func.isRequired,
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { commentItemShape };
 
 export default CommentItem;

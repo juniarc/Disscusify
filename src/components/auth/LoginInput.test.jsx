@@ -36,7 +36,7 @@ describe('LoginInput component', () => {
     render(
       <Provider store={store}>
         <LoginInput login={() => {}} t={t} />
-      </Provider>
+      </Provider>,
     );
     const emailInput = screen.getByPlaceholderText('Email');
 
@@ -52,7 +52,7 @@ describe('LoginInput component', () => {
     render(
       <Provider store={store}>
         <LoginInput login={() => {}} t={t} />
-      </Provider>
+      </Provider>,
     );
     const passwordInput = screen.getByPlaceholderText('Password');
 
@@ -69,7 +69,7 @@ describe('LoginInput component', () => {
     render(
       <Provider store={store}>
         <LoginInput login={mockLogin} t={t} />
-      </Provider>
+      </Provider>,
     );
     const emailInput = screen.getByPlaceholderText('Email');
     await userEvent.type(emailInput, 'emailtest@gmail.com');
