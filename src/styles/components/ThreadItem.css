@@ -100,7 +100,7 @@
 	}
 
 	.thread-item__body {
-		height: 40%;
+		height: 10em;
 	}
 
 	.thread-item__bottom {
@@ -108,7 +108,7 @@
 	}
 }
 
-@media screen and(max-width: 1280px) {
+@media screen and (max-width: 1280px) {
 	.thread-item {
 		height: 50vh;
 

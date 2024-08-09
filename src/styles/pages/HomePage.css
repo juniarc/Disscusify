@@ -38,24 +38,11 @@ main {
 	align-items: center;
 }
 
-.create-thread-btn {
-	background-color: var(--var-color-blue-to-red);
-	border-radius: 32px;
-
-	color: white;
-	font-weight: 700;
-
+.home-left-content__category__container {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-}
-
-.category-btn {
-	display: flex;
-	align-items: center;
-
-	font-weight: 700;
-
-	color: var(--var-color-black-to-white);
+	width: 100%;
 }
 
 .threads-list {
@@ -102,14 +89,8 @@ main {
 		row-gap: 64px;
 	}
 
-	.create-thread-btn {
-		padding: 1em 1.5em;
-
-		column-gap: 1em;
-	}
-
-	.category-btn {
-		column-gap: 16px;
+	.home-left-content__category__container {
+		row-gap: 16px;
 	}
 
 	.threads-list {
@@ -138,13 +119,6 @@ main {
 
 	.home-left-content {
 		row-gap: 32px;
-	}
-
-	.create-thread-btn {
-		padding: 1em 1.5em;
-
-		font-size: 0.625em;
-		column-gap: 0.5em;
 	}
 
 	.threads-list {
@@ -182,11 +156,9 @@ main {
 		column-gap: 32px;
 	}
 
-	.create-thread-btn {
-		padding: 1em 1.5em;
-
-		font-size: 0.625em;
-		column-gap: 0.5em;
+	.home-left-content__category__container {
+		width: fit-content;
+		position: relative;
 	}
 
 	.threads-list {

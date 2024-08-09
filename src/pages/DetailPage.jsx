@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import parse from 'html-react-parser';
 import { FaArrowLeft } from 'react-icons/fa';
 import DetailHeader from '../components/detail/DetailHeader';
 import DetailInteractions from '../components/detail/DetailInteractions';
@@ -76,7 +78,7 @@ function DetailPage({ t }) {
             <FaArrowLeft className="back-icon" />
           </Link>
           <DetailHeader {...detailThread} t={t} />
-          <p className="detail-page__body">{detailThread.body}</p>
+          <p className="detail-page__body">{parse(detailThread.body)}</p>
           <DetailInteractions
             {...detailThread}
             authUser={authUser}

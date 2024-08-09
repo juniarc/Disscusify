@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import styled from 'styled-components';
 import {
   FaRegThumbsUp,
   FaRegThumbsDown,
@@ -7,7 +9,31 @@ import {
   FaThumbsDown,
 } from 'react-icons/fa';
 
-import '../../styles/components/VoteBtns.css';
+const Button = styled.button`
+    display: flex;
+    align-items: center;
+
+    min-width: 24px;
+    min-height: 24px;
+
+    color: var(--var-color-black-to-white);
+
+    @media screen and (min-width: 1280px) {
+      column-gap: 8px;
+      font-size: 1em;
+    }
+    @media screen and (max-width: 1280px) {
+      column-gap: 8px;
+      font-size: 1em;
+    }
+    @media screen and (max-width: 768px) {
+      column-gap: 8px;
+      font-size: 1em;
+    }
+  `;
+
+const UpVoteButton = styled(Button)``;
+const DownVoteButton = styled(Button)``;
 
 function VoteBtns({
   id,
@@ -49,7 +75,7 @@ function VoteBtns({
   return (
     <>
       {upVotesBy && (
-        <button className="upVote__btn" onClick={onUpVoteClick} type="button">
+        <UpVoteButton className="upVote__btn" onClick={onUpVoteClick} type="button">
           {isUpVoted ? (
             <FaThumbsUp
               className="thumbs-up-icon"
@@ -59,10 +85,10 @@ function VoteBtns({
             <FaRegThumbsUp className="thumbs-up-icon" />
           )}
           <p className="upVote">{upVotesBy.length}</p>
-        </button>
+        </UpVoteButton>
       )}
       {downVotesBy && (
-        <button
+        <DownVoteButton
           className="downVote__btn"
           onClick={onDownVoteClick}
           type="button"
@@ -76,7 +102,7 @@ function VoteBtns({
             <FaRegThumbsDown className="thumbs-down-cion" />
           )}
           <p className="downVote__number">{downVotesBy.length}</p>
-        </button>
+        </DownVoteButton>
       )}
     </>
   );

@@ -1,13 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import styled from 'styled-components';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+
+const Button = styled.button`
+  display: flex;
+  align-items: center;
+
+  font-weight: 700;
+
+  color: var(--var-color-black-to-white);
+
+  @media screen and (min-width: 1280px) {
+    column-gap: 16px;
+  }
+`;
+
+const StyledCategoryButton = styled(Button)``;
 
 function CategoryButton({ isCategoryOpen, onCategoryBtn, t }) {
   return (
-    <button className="category-btn" onClick={onCategoryBtn} type="button">
+    <StyledCategoryButton
+      className="category-btn"
+      onClick={onCategoryBtn}
+      type="button"
+    >
       <p>{t('Categories')}</p>
       {isCategoryOpen ? <FaChevronUp /> : <FaChevronDown />}
-    </button>
+    </StyledCategoryButton>
   );
 }
 

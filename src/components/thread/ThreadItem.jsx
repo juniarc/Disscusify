@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import parse from 'html-react-parser';
 import VoteBtns from '../buttons/VoteBtns';
 import CommentsBtn from '../buttons/CommentsBtn';
 import { postedAt } from '../../utils/dateHelper';
@@ -56,7 +58,7 @@ function ThreadItem({
           <p className="thread-item__category">{category}</p>
         </div>
       </div>
-      <p className="thread-item__body">{body}</p>
+      <p className="thread-item__body">{parse(body)}</p>
       <div className="thread-item__bottom">
         <VoteBtns
           id={id}
